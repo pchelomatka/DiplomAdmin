@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">DiplomAdmin</string>
+    <string name="textview">Логин</string>
+    <string name="textview2">Пароль</string>
+    <string name="button">Войти</string>
+    <string name="button2">Операции с точками</string>
+    <string name="button3">Операции с векторами</string>
+    <string name="button4">Операции с псевдонимами</string>
+    <string name="button5">Добавить точку</string>
+    <string name="button6">Удалить точку</string>
+    <string name="button7">Изменить точку</string>
+</resources>

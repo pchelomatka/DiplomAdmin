@@ -1,4 +1,4 @@
-package com.example.diplomadmin.activities;
+package com.example.diplomadmin.activities.menu;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.diplomadmin.R;
+import com.example.diplomadmin.activities.points.AddPoint;
 
 public class MenuPoint extends AppCompatActivity implements View.OnClickListener {
 
@@ -32,7 +33,7 @@ public class MenuPoint extends AppCompatActivity implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button5:
-                Intent intentPoint = new Intent(this, MenuPoint.class);
+                Intent intentPoint = new Intent(this, AddPoint.class);
                 startActivity(intentPoint);
                 break;
             case R.id.button6:

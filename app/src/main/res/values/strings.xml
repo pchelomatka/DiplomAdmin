@@ -9,4 +9,8 @@
     <string name="button5">Добавить точку</string>
     <string name="button6">Удалить точку</string>
     <string name="button7">Изменить точку</string>
+    <string name="textview5">Id Маркера</string>
+    <string name="textview6">Название</string>
+    <string name="textview7">Id Здания</string>
+    <string name="button8">Добавить</string>
 </resources>

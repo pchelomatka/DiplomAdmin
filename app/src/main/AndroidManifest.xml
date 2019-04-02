@@ -15,11 +15,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.MenuAlias"></activity>
-        <activity android:name=".activities.MenuVector" />
-        <activity android:name=".activities.MenuPoint" />
-        <activity android:name=".activities.Menu" />
-        <activity android:name=".activities.LoginActivity">
+        <activity android:name=".activities.points.AddPoint"></activity>
+        <activity android:name=".activities.menu.MenuAlias" />
+        <activity android:name=".activities.menu.MenuVector" />
+        <activity android:name=".activities.menu.MenuPoint" />
+        <activity android:name=".activities.menu.Menu" />
+        <activity android:name=".activities.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

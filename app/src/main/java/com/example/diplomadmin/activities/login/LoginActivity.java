@@ -1,4 +1,4 @@
-package com.example.diplomadmin.activities;
+package com.example.diplomadmin.activities.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.diplomadmin.R;
+import com.example.diplomadmin.activities.menu.Menu;
 import com.example.diplomadmin.interfaces.API;
 import com.example.diplomadmin.requestBody.RequestBodyAuth;
 import com.example.diplomadmin.responseBody.ResponseBodyAuth;
@@ -24,13 +25,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button buttonLogin;
     EditText editTextLogin;
     EditText editTextPass;
     public static String token;
-    private static Boolean AuthStatus = false;
+    private static Boolean authStatus = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +49,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String login = editTextLogin.getText().toString().trim();
         String password = editTextPass.getText().toString().trim();
 
-        if(!login.isEmpty() & !password.isEmpty()) {
-            Login(login, password);
+        if (!login.isEmpty() & !password.isEmpty()) {
+            login(login, password);
         }
     }
 
@@ -63,19 +64,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             for (int i = 0; i < array.length; i++) {
                 sb.append(Integer.toHexString(array[i] & 0xFF | 0x100).substring(1, 3));
             }
-            return sb.toString();
+            return sb.toString().toUpperCase();
         } catch (NoSuchAlgorithmException e) {
         }
         return null;
     }
 
-    private void Login(String login, String pass) {
+    private void login(String login, String pass) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://10.81.2.251")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        final RequestBodyAuth requestBodyAuth = new RequestBodyAuth(login, pass);
+        final RequestBodyAuth requestBodyAuth = new RequestBodyAuth(login, pass = MD5(pass));
 
         API api = retrofit.create(API.class);
         api.loginUser(requestBodyAuth);
@@ -86,7 +87,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onResponse(Call<ResponseBodyAuth> call, Response<ResponseBodyAuth> response) {
                 if (response.isSuccessful()) {
-                    AuthStatus = true;
+                    authStatus = true;
                     token = response.body().getResponse().getToken();
                     Log.i("TOKEN", token);
                 } else {
@@ -99,7 +100,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Toast.makeText(getApplicationContext(), "Server is down", Toast.LENGTH_LONG).show();
             }
         });
-        if(AuthStatus == true) {
+        if (authStatus == true) {
             Intent intent = new Intent(this, Menu.class);
             startActivity(intent);
             finish();

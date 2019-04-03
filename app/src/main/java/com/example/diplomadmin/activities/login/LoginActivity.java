@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void login(String login, String pass) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.81.2.251")
+                .baseUrl("http://128.69.250.53")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

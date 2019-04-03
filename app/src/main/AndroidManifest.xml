@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.points.AddPoint"></activity>
+        <activity android:name=".activities.points.UpdatePoint"></activity>
+        <activity android:name=".activities.points.AddPoint" />
         <activity android:name=".activities.menu.MenuAlias" />
         <activity android:name=".activities.menu.MenuVector" />
         <activity android:name=".activities.menu.MenuPoint" />

@@ -1,8 +1,8 @@
 package com.example.diplomadmin.activities.points;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -11,10 +11,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.diplomadmin.R;
+import com.example.diplomadmin.activities.login.LoginActivity;
 import com.example.diplomadmin.interfaces.API;
-import com.example.diplomadmin.requestBody.RequestBodyAddPoint;
 import com.example.diplomadmin.requestBody.RequestUpdatePoint;
-import com.example.diplomadmin.responseBody.ResponseAddPoint;
 import com.example.diplomadmin.responseBody.ResponseUpdatePoint;
 
 import retrofit2.Call;
@@ -60,16 +59,16 @@ public class UpdatePoint extends AppCompatActivity implements View.OnClickListen
 
     private void updatePoint(String id, String deviceId, String title, String buildingId) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://128.69.250.53")
+                .baseUrl("http://128.69.250.53")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         final RequestUpdatePoint requestUpdatePoint = new RequestUpdatePoint(id, deviceId, title, buildingId);
 
         API api = retrofit.create(API.class);
-        api.updatePoint(requestUpdatePoint);
+        api.updatePoint(LoginActivity.token,requestUpdatePoint);
 
-        Call<ResponseUpdatePoint> call = api.updatePoint(requestUpdatePoint);
+        Call<ResponseUpdatePoint> call = api.updatePoint(LoginActivity.token, requestUpdatePoint);
 
         call.enqueue(new Callback<ResponseUpdatePoint>() {
             @Override

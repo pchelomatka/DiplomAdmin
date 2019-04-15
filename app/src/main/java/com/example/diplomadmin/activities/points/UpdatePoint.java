@@ -59,7 +59,7 @@ public class UpdatePoint extends AppCompatActivity implements View.OnClickListen
 
     private void updatePoint(String id, String deviceId, String title, String buildingId) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://128.69.250.53")
+                .baseUrl(LoginActivity.baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

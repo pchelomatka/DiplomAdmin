@@ -14,20 +14,27 @@ import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface API {
+    
+    static String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36";
 
+    @Headers({"User-Agent: " + userAgent})
     @POST("/api/login")
     Call<ResponseBodyAuth> loginUser(@Body RequestBodyAuth requestBodyAuth);
 
+    @Headers({"User-Agent: " + userAgent})
     @POST("api/addPoint")
     Call<ResponseAddPoint> addPoint(@Query("token") String token, @Body RequestBodyAddPoint requestBodyAddPoint);
 
+    @Headers({"User-Agent: " + userAgent})
     @POST("api/updatePoint")
     Call<ResponseUpdatePoint> updatePoint(@Query("token") String token, @Body RequestUpdatePoint requestUpdatePoint);
 
+    @Headers({"User-Agent: " + userAgent})
     @POST("api/deletePoint")
     Call<ResponseDeletePoint> deletePoint(@Query("token") String token, @Body RequestDeletePoint requestDeletePoint);
 }

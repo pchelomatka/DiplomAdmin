@@ -52,7 +52,7 @@ public class DeletePoint extends AppCompatActivity implements View.OnClickListen
 
     private void deletePoint(String id) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://128.69.250.53")
+                .baseUrl(LoginActivity.baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

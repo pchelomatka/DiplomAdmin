@@ -92,6 +92,34 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/button8" />
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView12"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="TextView" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="CheckBox" />
+
+                        <ListView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
+                </ScrollView>
             </LinearLayout>
         </ScrollView>
 

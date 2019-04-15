@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.diplomadmin.R;
+import com.example.diplomadmin.activities.vectors.AddVector;
+import com.example.diplomadmin.activities.vectors.DeleteVector;
+import com.example.diplomadmin.activities.vectors.UpdateVector;
 
 public class MenuVector extends AppCompatActivity implements View.OnClickListener{
 

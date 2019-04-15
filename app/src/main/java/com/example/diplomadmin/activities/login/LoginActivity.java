@@ -31,6 +31,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     EditText editTextLogin;
     EditText editTextPass;
     public static String token;
+    public static String baseUrl = "http://t999640p.beget.tech";
     private static Boolean authStatus = false;
 
     @Override
@@ -72,7 +73,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void login(String login, String pass) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://128.69.250.53")
+                .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -82,7 +83,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         api.loginUser(requestBodyAuth);
 
         Call<ResponseBodyAuth> call = api.loginUser(requestBodyAuth);
-
+        buttonLogin.setText("Авторизация...");
         call.enqueue(new Callback<ResponseBodyAuth>() {
             @Override
             public void onResponse(Call<ResponseBodyAuth> call, Response<ResponseBodyAuth> response) {
@@ -90,21 +91,29 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     authStatus = true;
                     token = response.body().getResponse().getToken();
                     Log.i("TOKEN", token);
+                    buttonLogin.setText("Войти");
+                    if (authStatus == true) {
+                        Intent intent = new Intent(LoginActivity.this, Menu.class);
+                        startActivity(intent);
+                        finish();
+                    }
                 } else {
                     Toast.makeText(getApplicationContext(), "Wrong credentials", Toast.LENGTH_LONG).show();
                 }
+                buttonLogin.setText("Войти");
             }
 
             @Override
             public void onFailure(Call<ResponseBodyAuth> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "Server is down", Toast.LENGTH_LONG).show();
+                buttonLogin.setText("Войти");
             }
         });
-        if (authStatus == true) {
-            Intent intent = new Intent(this, Menu.class);
-            startActivity(intent);
-            finish();
-        }
+//        if (authStatus == true) {
+//            Intent intent = new Intent(this, Menu.class);
+//            startActivity(intent);
+//            finish();
+//        }
 
     }
 }

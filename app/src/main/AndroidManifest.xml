@@ -15,7 +15,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.points.AddPoint"></activity>
+        <activity android:name=".activities.aliases.UpdateAlias"></activity>
+        <activity android:name=".activities.aliases.DeleteAlias" />
+        <activity android:name=".activities.aliases.AddAlias" />
+        <activity android:name=".activities.vectors.UpdateVector" />
+        <activity android:name=".activities.vectors.DeleteVector" />
+        <activity android:name=".activities.vectors.AddVector" />
+        <activity android:name=".activities.points.DeletePoint" />
+        <activity android:name=".activities.points.UpdatePoint" />
+        <activity android:name=".activities.points.AddPoint" />
         <activity android:name=".activities.menu.MenuAlias" />
         <activity android:name=".activities.menu.MenuVector" />
         <activity android:name=".activities.menu.MenuPoint" />

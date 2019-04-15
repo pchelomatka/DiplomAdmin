@@ -13,4 +13,15 @@
     <string name="textview6">Название</string>
     <string name="textview7">Id Здания</string>
     <string name="button8">Добавить</string>
+    <string name="textview4">Id точки</string>
+    <string name="textview8">Id маркера</string>
+    <string name="textview9">Название точки</string>
+    <string name="textview10">Id здания</string>
+    <string name="button9">Обновить точку</string>
+    <string name="textview3">Id Точки</string>
+    <string name="textview11">Id Точки</string>
+    <string name="button10">Удалить точку</string>
+    <string name="button11">Добавить Вектор</string>
+    <string name="button12">Удалить Вектор</string>
+    <string name="button13">Удалить Вектор</string>
 </resources>

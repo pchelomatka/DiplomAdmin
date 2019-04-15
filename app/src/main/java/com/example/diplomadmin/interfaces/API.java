@@ -1,15 +1,20 @@
 package com.example.diplomadmin.interfaces;
 
-import com.example.diplomadmin.activities.login.LoginActivity;
 import com.example.diplomadmin.requestBody.RequestBodyAddPoint;
 import com.example.diplomadmin.requestBody.RequestBodyAuth;
+import com.example.diplomadmin.requestBody.RequestDeletePoint;
+import com.example.diplomadmin.requestBody.RequestUpdatePoint;
 import com.example.diplomadmin.responseBody.ResponseAddPoint;
 import com.example.diplomadmin.responseBody.ResponseBodyAuth;
+import com.example.diplomadmin.responseBody.ResponseDeletePoint;
+import com.example.diplomadmin.responseBody.ResponseUpdatePoint;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface API {
@@ -17,6 +22,12 @@ public interface API {
     @POST("/api/login")
     Call<ResponseBodyAuth> loginUser(@Body RequestBodyAuth requestBodyAuth);
 
-    @POST("api/addPoint?token=access461b9bed5f7d6f9c39faf6b986605cf3")
-    Call<ResponseAddPoint> addPoint(@Body RequestBodyAddPoint requestBodyAddPoint);
+    @POST("api/addPoint")
+    Call<ResponseAddPoint> addPoint(@Query("token") String token, @Body RequestBodyAddPoint requestBodyAddPoint);
+
+    @POST("api/updatePoint")
+    Call<ResponseUpdatePoint> updatePoint(@Query("token") String token, @Body RequestUpdatePoint requestUpdatePoint);
+
+    @POST("api/deletePoint")
+    Call<ResponseDeletePoint> deletePoint(@Query("token") String token, @Body RequestDeletePoint requestDeletePoint);
 }

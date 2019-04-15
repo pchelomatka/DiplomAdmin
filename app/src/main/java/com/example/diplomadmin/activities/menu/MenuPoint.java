@@ -8,6 +8,8 @@ import android.widget.Button;
 
 import com.example.diplomadmin.R;
 import com.example.diplomadmin.activities.points.AddPoint;
+import com.example.diplomadmin.activities.points.DeletePoint;
+import com.example.diplomadmin.activities.points.UpdatePoint;
 
 public class MenuPoint extends AppCompatActivity implements View.OnClickListener {
 
@@ -37,11 +39,11 @@ public class MenuPoint extends AppCompatActivity implements View.OnClickListener
                 startActivity(intentPoint);
                 break;
             case R.id.button6:
-                Intent intentVector = new Intent(this, MenuVector.class);
+                Intent intentVector = new Intent(this, DeletePoint.class);
                 startActivity(intentVector);
                 break;
             case R.id.button7:
-                Intent intentAlias = new Intent(this, MenuAlias.class);
+                Intent intentAlias = new Intent(this, UpdatePoint.class);
                 startActivity(intentAlias);
                 break;
         }

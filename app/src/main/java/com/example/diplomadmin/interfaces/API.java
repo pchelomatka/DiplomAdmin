@@ -1,14 +1,21 @@
 package com.example.diplomadmin.interfaces;
 
+import com.example.diplomadmin.requestBody.RequestAddVector;
 import com.example.diplomadmin.requestBody.RequestBodyAddPoint;
 import com.example.diplomadmin.requestBody.RequestBodyAuth;
 import com.example.diplomadmin.requestBody.RequestDeletePoint;
+import com.example.diplomadmin.requestBody.RequestDeleteVector;
 import com.example.diplomadmin.requestBody.RequestUpdatePoint;
+import com.example.diplomadmin.requestBody.RequestUpdateVector;
 import com.example.diplomadmin.responseBody.ResponseAddPoint;
+import com.example.diplomadmin.responseBody.ResponseAddVector;
 import com.example.diplomadmin.responseBody.ResponseBodyAuth;
 import com.example.diplomadmin.responseBody.ResponseDeletePoint;
+import com.example.diplomadmin.responseBody.ResponseDeleteVector;
 import com.example.diplomadmin.responseBody.ResponseGetPoints;
+import com.example.diplomadmin.responseBody.ResponseGetVectors;
 import com.example.diplomadmin.responseBody.ResponseUpdatePoint;
+import com.example.diplomadmin.responseBody.ResponseUpdateVector;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -42,4 +49,20 @@ public interface API {
     @Headers({"User-Agent: " + userAgent})
     @GET("api/points")
     Call<ResponseGetPoints> points(@Query("token") String token, @Query("building_id") String building_id);
+
+    @Headers({"User-Agent: " + userAgent})
+    @POST("api/addVector")
+    Call<ResponseAddVector> addVector(@Query("token") String token, @Body RequestAddVector requestAddVector);
+
+    @Headers({"User-Agent: " + userAgent})
+    @POST("api/updateVector")
+    Call<ResponseUpdateVector> updateVector(@Query("token") String token, @Body RequestUpdateVector requestUpdateVector);
+
+    @Headers({"User-Agent: " + userAgent})
+    @GET("api/vectors")
+    Call<ResponseGetVectors> vectors(@Query("token") String token, @Query("building_id") String building_id);
+
+    @Headers({"User-Agent: " + userAgent})
+    @POST("api/deleteVector")
+    Call<ResponseDeleteVector> deleteVector(@Query("token") String token, @Body RequestDeleteVector requestDeleteVector);
 }

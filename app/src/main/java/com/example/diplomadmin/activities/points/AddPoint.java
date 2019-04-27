@@ -78,7 +78,7 @@ public class AddPoint extends AppCompatActivity implements View.OnClickListener 
     EditText editTextTitle;
     EditText editTextBuildingId;
     private static Boolean addPointStatus = false;
-    String token;
+//    String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

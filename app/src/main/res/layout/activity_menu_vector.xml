@@ -27,6 +27,12 @@
                     android:text="@string/button11" />
 
                 <Button
+                    android:id="@+id/button16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button16" />
+
+                <Button
                     android:id="@+id/button12"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

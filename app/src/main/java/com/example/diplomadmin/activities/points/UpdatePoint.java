@@ -8,12 +8,14 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.diplomadmin.R;
 import com.example.diplomadmin.activities.login.LoginActivity;
 import com.example.diplomadmin.interfaces.API;
 import com.example.diplomadmin.requestBody.RequestUpdatePoint;
+import com.example.diplomadmin.responseBody.ResponseGetPoints;
 import com.example.diplomadmin.responseBody.ResponseUpdatePoint;
 
 import retrofit2.Call;
@@ -29,8 +31,11 @@ public class UpdatePoint extends AppCompatActivity implements View.OnClickListen
     EditText editTextDeviceId;
     EditText editTextTitle;
     EditText editTextBuildingId;
+    TextView textViewGetPoints;
     private static Boolean updatePointStatus = false;
-    String token;
+    //    String token;
+    public static String pointsForUpdate;
+    String building_id = "4"; //да-да хардкод
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +48,8 @@ public class UpdatePoint extends AppCompatActivity implements View.OnClickListen
         editTextDeviceId = findViewById(R.id.editText7);
         editTextTitle = findViewById(R.id.editText8);
         editTextBuildingId = findViewById(R.id.editText9);
+        textViewGetPoints = findViewById(R.id.textView4);
+        points(building_id);
     }
 
     @Override
@@ -66,7 +73,7 @@ public class UpdatePoint extends AppCompatActivity implements View.OnClickListen
         final RequestUpdatePoint requestUpdatePoint = new RequestUpdatePoint(id, deviceId, title, buildingId);
 
         API api = retrofit.create(API.class);
-        api.updatePoint(LoginActivity.token,requestUpdatePoint);
+        api.updatePoint(LoginActivity.token, requestUpdatePoint);
 
         Call<ResponseUpdatePoint> call = api.updatePoint(LoginActivity.token, requestUpdatePoint);
 
@@ -75,7 +82,6 @@ public class UpdatePoint extends AppCompatActivity implements View.OnClickListen
             public void onResponse(Call<ResponseUpdatePoint> call, Response<ResponseUpdatePoint> response) {
                 if (response.isSuccessful()) {
                     updatePointStatus = true;
-                    Log.i("ADD POINT", response.body().getResponse());
                 } else {
                     Toast.makeText(getApplicationContext(), "Something wrong", Toast.LENGTH_LONG).show();
                 }
@@ -91,5 +97,39 @@ public class UpdatePoint extends AppCompatActivity implements View.OnClickListen
             Intent intent = new Intent(this, Menu.class);
             startActivity(intent);
         }
+    }
+
+    private void points(String building_id) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(LoginActivity.baseUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        API api = retrofit.create(API.class);
+        api.points(LoginActivity.token, building_id);
+
+        Call<ResponseGetPoints> call = api.points(LoginActivity.token, building_id);
+
+        call.enqueue(new Callback<ResponseGetPoints>() {
+            @Override
+            public void onResponse(Call<ResponseGetPoints> call, Response<ResponseGetPoints> response) {
+                if (response.isSuccessful()) {
+                    pointsForUpdate = "";
+                    //Log.i("GET POINTS", response.body().getResponse().get(0).getTitle());
+                    for (int i = 0; i < response.body().getResponse().size(); i++) {
+                        pointsForUpdate += response.body().getResponse().get(i).getId() + " ";
+                        pointsForUpdate += response.body().getResponse().get(i).getDeviceId() + " ";
+                        pointsForUpdate += response.body().getResponse().get(i).getTitle() + " ";
+                        pointsForUpdate += "\n";
+                    }
+                    textViewGetPoints.setText(pointsForUpdate.replace("null", ""));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseGetPoints> call, Throwable t) {
+
+            }
+        });
     }
 }

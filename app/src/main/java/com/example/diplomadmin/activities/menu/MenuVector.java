@@ -12,11 +12,13 @@ import com.example.diplomadmin.activities.points.DeletePoint;
 import com.example.diplomadmin.activities.points.UpdatePoint;
 import com.example.diplomadmin.activities.vectors.AddVector;
 import com.example.diplomadmin.activities.vectors.DeleteVector;
+import com.example.diplomadmin.activities.vectors.UpdateVector;
 
 public class MenuVector extends AppCompatActivity implements View.OnClickListener {
 
     Button buttonAdd;
     Button buttonDelete;
+    Button buttonUpdate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +27,11 @@ public class MenuVector extends AppCompatActivity implements View.OnClickListene
 
         buttonAdd = findViewById(R.id.button11);
         buttonDelete = findViewById(R.id.button12);
+        buttonUpdate = findViewById(R.id.button16);
 
         buttonAdd.setOnClickListener(this);
         buttonDelete.setOnClickListener(this);
+        buttonUpdate.setOnClickListener(this);
     }
 
     @Override
@@ -40,6 +44,10 @@ public class MenuVector extends AppCompatActivity implements View.OnClickListene
             case R.id.button12:
                 Intent intentDelete = new Intent(this, DeleteVector.class);
                 startActivity(intentDelete);
+                break;
+            case R.id.button16:
+                Intent intentUpdate = new Intent(this, UpdateVector.class);
+                startActivity(intentUpdate);
                 break;
         }
     }

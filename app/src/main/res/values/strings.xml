@@ -29,5 +29,19 @@
     <string name="checkbox">Начать поиск</string>
     <string name="textview14">Id Точки</string>
     <string name="textview15">Id маркера</string>
-    <string name="textview4">Название точки</string>
+    <string name="textview4">Id точки</string>
+    <string name="textview12">Id здания</string>
+    <string name="textview13">Начальная точка</string>
+    <string name="textview144">Конечная точка</string>
+    <string name="textview155">Дистанция</string>
+    <string name="textview16">Направление</string>
+    <string name="textview156">Id вектора</string>
+    <string name="textview17">Id здания</string>
+    <string name="textview18">Начальная точка</string>
+    <string name="textview20">Конечная точка</string>
+    <string name="textview21">Дистанция</string>
+    <string name="textview22">Направление</string>
+    <string name="button16">Изменить вектор</string>
+    <string name="textview24">Id Вектора</string>
+    <string name="button17">Удалить вектор</string>
 </resources>

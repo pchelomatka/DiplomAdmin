@@ -4,14 +4,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.GridView;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,12 +15,8 @@ import com.example.diplomadmin.R;
 import com.example.diplomadmin.activities.login.LoginActivity;
 import com.example.diplomadmin.interfaces.API;
 import com.example.diplomadmin.requestBody.RequestDeletePoint;
-import com.example.diplomadmin.requestBody.RequestUpdatePoint;
 import com.example.diplomadmin.responseBody.ResponseDeletePoint;
 import com.example.diplomadmin.responseBody.ResponseGetPoints;
-import com.example.diplomadmin.responseBody.ResponseUpdatePoint;
-
-import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,9 +30,9 @@ public class DeletePoint extends AppCompatActivity implements View.OnClickListen
     EditText editTextDeletePoint;
     TextView textViewGetPoints;
     private static Boolean deletePointStatus = false;
-    String token;
+//    String token;
     String building_id = "4"; //да-да хардкод
-    public static String test;
+    public static String points;
 
 
     @Override
@@ -115,14 +107,15 @@ public class DeletePoint extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onResponse(Call<ResponseGetPoints> call, Response<ResponseGetPoints> response) {
                 if (response.isSuccessful()) {
+                    points = "";
                     //Log.i("GET POINTS", response.body().getResponse().get(0).getTitle());
                     for (int i = 0; i < response.body().getResponse().size(); i++) {
-                        test += response.body().getResponse().get(i).getId() + " ";
-                        test += response.body().getResponse().get(i).getDeviceId() + " ";
-                        test += response.body().getResponse().get(i).getTitle() + " ";
-                        test += "\n";
+                        points += response.body().getResponse().get(i).getId() + " ";
+                        points += response.body().getResponse().get(i).getDeviceId() + " ";
+                        points += response.body().getResponse().get(i).getTitle() + " ";
+                        points += "\n";
                     }
-                    textViewGetPoints.setText(test.replace("null", ""));
+                    textViewGetPoints.setText(points.replace("null", ""));
                 }
             }
 

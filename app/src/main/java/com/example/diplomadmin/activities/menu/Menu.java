@@ -7,12 +7,14 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.diplomadmin.R;
+import com.example.diplomadmin.activities.bluetooth.BluetoothActivity;
 
 public class Menu extends AppCompatActivity implements View.OnClickListener{
 
     Button buttonPoint;
     Button buttonVector;
     Button buttonAlias;
+    Button buttonBluetooth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +24,12 @@ public class Menu extends AppCompatActivity implements View.OnClickListener{
         buttonPoint = findViewById(R.id.button2);
         buttonVector = findViewById(R.id.button3);
         buttonAlias = findViewById(R.id.button4);
+        buttonBluetooth = findViewById(R.id.button14);
 
         buttonPoint.setOnClickListener(this);
         buttonVector.setOnClickListener(this);
         buttonAlias.setOnClickListener(this);
+        buttonBluetooth.setOnClickListener(this);
     }
 
     @Override
@@ -42,6 +46,10 @@ public class Menu extends AppCompatActivity implements View.OnClickListener{
             case R.id.button4:
                 Intent intentAlias = new Intent(this, MenuAlias.class);
                 startActivity(intentAlias);
+                break;
+            case R.id.button14:
+                Intent intentBluetooth = new Intent(this, BluetoothActivity.class);
+                startActivity(intentBluetooth);
                 break;
         }
     }

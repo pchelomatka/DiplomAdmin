@@ -1,4 +1,4 @@
-package com.example.diplomadmin.activities.points;
+package com.example.diplomadmin.activities.bluetooth;
 
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
@@ -8,16 +8,18 @@ import android.bluetooth.le.ScanCallback;
 import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanSettings;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -28,16 +30,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.diplomadmin.R;
-import com.example.diplomadmin.activities.bluetooth.BluetoothActivity;
-import com.example.diplomadmin.activities.bluetooth.Point;
-import com.example.diplomadmin.activities.login.LoginActivity;
-import com.example.diplomadmin.activities.menu.MenuPoint;
-import com.example.diplomadmin.interfaces.API;
-import com.example.diplomadmin.requestBody.RequestBodyAddPoint;
-import com.example.diplomadmin.responseBody.ResponseAddPoint;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -46,13 +40,7 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-public class AddPoint extends AppCompatActivity implements View.OnClickListener {
+public class BluetoothActivity extends AppCompatActivity {
 
     private final int REQUEST_ENABLE_BT = 1;
     private final int REQUEST_LOCATION_PERMISSION = 2;
@@ -70,25 +58,21 @@ public class AddPoint extends AppCompatActivity implements View.OnClickListener 
     private Map<String, BeaconInfo> beaconInfos = new HashMap<>();
     private BeaconInfo nearestBeaconInfo;
 
-    private ArrayList<Point> points = new ArrayList<>();
+    private ArrayList<Point> points = new ArrayList<Point>();
     private boolean addPointButtonEnabled = false;
     private Point tempPoint = null;
-    Button buttonAddPoint;
-    EditText editTextDeviceId;
-    EditText editTextTitle;
-    EditText editTextBuildingId;
-    private static Boolean addPointStatus = false;
-    String token;
+
+    private Button addButton;
+    private EditText pointName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_point);
-
+        setContentView(R.layout.activity_bluetooth);
         sharedPreferences = getPreferences(Context.MODE_PRIVATE);
-        nearestBeaconLabel = findViewById(R.id.currentBeaconLabel2);
-        beaconListView = findViewById(R.id.beaconListView2);
-        discoveryCheckBox = findViewById(R.id.discoveryCheckBox2);
+        nearestBeaconLabel = findViewById(R.id.currentBeaconLabel);
+        beaconListView = findViewById(R.id.beaconListView);
+        discoveryCheckBox = findViewById(R.id.discoveryCheckBox);
         nearestBeaconLabel.setVisibility(View.INVISIBLE);
         beaconListView.setAdapter(beaconListAdapter);
         tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
@@ -98,6 +82,9 @@ public class AddPoint extends AppCompatActivity implements View.OnClickListener 
             }
         });
         getBluetoothAdapter();
+
+        addButton = findViewById(R.id.addButton);
+        EditText pointName = findViewById(R.id.pointNameTextView);
 
         discoveryCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -120,6 +107,68 @@ public class AddPoint extends AppCompatActivity implements View.OnClickListener 
             }
         });
 
+//        beaconListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//
+//
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                final BeaconInfo beaconInfo = (BeaconInfo) beaconListView.getItemAtPosition(position);
+//
+//                Button addButton = findViewById(R.id.addButton);
+//                EditText pointName = findViewById(R.id.pointNameTextView);
+//
+//                if (BluetoothActivity.this.addPointButtonEnabled) {
+//                    if (BluetoothActivity.this.tempPoint == null) {
+//                        BluetoothActivity.this.tempPoint = new Point(pointName.getText().toString());
+////						MainActivity.this.tempPoint = new Point("Метка");
+//                    }
+//                    if (BluetoothActivity.this.tempPoint.getBeaconsCount() == 2) {
+//                        BluetoothActivity.this.tempPoint.addBeacon(beaconInfo.address, Integer.toString(beaconInfo.rssi));
+//                        addButton.setEnabled(true);
+//                        addButton.setText("+");
+//                        pointName.setText("");
+//
+//                        BluetoothActivity.this.points.add(BluetoothActivity.this.tempPoint);
+//                        BluetoothActivity.this.tempPoint = null;
+//
+//                    } else {
+//                        addButton.setText(Integer.toString(3 - BluetoothActivity.this.tempPoint.getBeaconsCount()));
+//                        BluetoothActivity.this.tempPoint.addBeacon(beaconInfo.address, Integer.toString(beaconInfo.rssi));
+//                    }
+//                    return;
+//                }
+//
+//                AlertDialog.Builder builder = new AlertDialog.Builder(BluetoothActivity.this);
+//                builder.setTitle("Rename beacon\n" + beaconInfo.address);
+//                final EditText editText = new EditText(BluetoothActivity.this);
+//                editText.setText(beaconInfo.title);
+//                builder.setView(editText);
+//                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        final String text = editText.getText().toString();
+//                        SharedPreferences.Editor editor = sharedPreferences.edit();
+//                        if (text.length() > 0) {
+//                            beaconInfo.title = text;
+//                            editor.putString(beaconInfo.address, text);
+//                        } else {
+//                            beaconInfo.title = null;
+//                            editor.remove(beaconInfo.address);
+//                        }
+//                        editor.apply();
+//                        beaconListAdapter.notifyDataSetChanged();
+//                    }
+//                });
+//                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        dialog.cancel();
+//                    }
+//                });
+//                builder.show();
+//            }
+//        });
+
         beaconTimeoutTimer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -127,11 +176,11 @@ public class AddPoint extends AppCompatActivity implements View.OnClickListener 
                     @Override
                     public void run() {
                         long curTime = System.currentTimeMillis();
-                        Iterator<Map.Entry<String, AddPoint.BeaconInfo>> it = beaconInfos.entrySet().iterator();
+                        Iterator<Map.Entry<String, BeaconInfo>> it = beaconInfos.entrySet().iterator();
                         boolean somethingChanged = false;
                         while (it.hasNext()) {
-                            Map.Entry<String, AddPoint.BeaconInfo> entry = it.next();
-                            AddPoint.BeaconInfo beaconInfo = entry.getValue();
+                            Map.Entry<String, BeaconInfo> entry = it.next();
+                            BeaconInfo beaconInfo = entry.getValue();
                             if ((curTime - beaconInfo.lastSeen) > 5000) {
                                 it.remove();
                                 if (beaconInfo == nearestBeaconInfo) {
@@ -148,60 +197,11 @@ public class AddPoint extends AppCompatActivity implements View.OnClickListener 
                 });
             }
         }, 1000, 1000);
-
-
-        buttonAddPoint = findViewById(R.id.button8);
-        buttonAddPoint.setOnClickListener(this);
-        editTextDeviceId = findViewById(R.id.editText4);
-        editTextTitle = findViewById(R.id.editText5);
-        editTextBuildingId = findViewById(R.id.editText6);
     }
 
-    @Override
-    public void onClick(View v) {
-        String deviceId = editTextDeviceId.getText().toString().trim();
-        String title = editTextTitle.getText().toString().trim();
-        String buildingId = editTextBuildingId.getText().toString().trim();
-
-        if (!deviceId.isEmpty() & !title.isEmpty() & !buildingId.isEmpty()) {
-            addPoint(deviceId, title, buildingId);
-        }
-    }
-
-    private void addPoint(String deviceId, String title, String buildingId) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(LoginActivity.baseUrl)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        final RequestBodyAddPoint requestBodyAddPoint = new RequestBodyAddPoint(deviceId, title, buildingId);
-
-        API api = retrofit.create(API.class);
-        api.addPoint(LoginActivity.token, requestBodyAddPoint);
-
-        Call<ResponseAddPoint> call = api.addPoint(LoginActivity.token, requestBodyAddPoint);
-
-        call.enqueue(new Callback<ResponseAddPoint>() {
-            @Override
-            public void onResponse(Call<ResponseAddPoint> call, Response<ResponseAddPoint> response) {
-                if (response.isSuccessful()) {
-                    addPointStatus = true;
-                    Log.i("ADD POINT", response.body().getResponse());
-                    Toast.makeText(getApplicationContext(), "Точка добавлена", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Что-то пошло не так", Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseAddPoint> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Сервер не отвечает", Toast.LENGTH_LONG).show();
-            }
-        });
-        if (addPointStatus == true) {
-            Intent intent = new Intent(this, MenuPoint.class);
-            startActivity(intent);
-        }
+    public void addButtonClicked(View v) {
+        this.addPointButtonEnabled = true;
+        this.addButton.setEnabled(false);
     }
 
     @Override
@@ -292,7 +292,7 @@ public class AddPoint extends AppCompatActivity implements View.OnClickListener 
             @Override
             public void run() {
 
-                String checked = AddPoint.this.checkPoint(beaconInfos);
+                String checked = BluetoothActivity.this.checkPoint(beaconInfos);
 
                 if (!checked.isEmpty()) {
                     tts.speak(checked, TextToSpeech.QUEUE_FLUSH, null);
@@ -302,9 +302,9 @@ public class AddPoint extends AppCompatActivity implements View.OnClickListener 
                     nearestBeaconLabel.setText("");
                 }
 
-                AddPoint.BeaconInfo beaconInfo = beaconInfos.get(address);
+                BeaconInfo beaconInfo = beaconInfos.get(address);
                 if (beaconInfo == null) {
-                    beaconInfo = new AddPoint.BeaconInfo(address, rssi);
+                    beaconInfo = new BeaconInfo(address, rssi);
                     beaconInfos.put(beaconInfo.address, beaconInfo);
                     beaconInfo.title = sharedPreferences.getString(beaconInfo.address, null);
                 } else {
@@ -331,7 +331,7 @@ public class AddPoint extends AppCompatActivity implements View.OnClickListener 
         });
     }
 
-    public String checkPoint(Map<String, AddPoint.BeaconInfo> beaconInfos) {
+    public String checkPoint(Map<String, BeaconInfo> beaconInfos) {
         for (int i = 0; i < this.points.size(); i++) {
             Point point = this.points.get(i);
 
@@ -341,7 +341,7 @@ public class AddPoint extends AppCompatActivity implements View.OnClickListener 
                 String key = entry.getKey();
                 String value = entry.getValue();
 
-                AddPoint.BeaconInfo beacon = beaconInfos.get(key);
+                BeaconInfo beacon = beaconInfos.get(key);
 
                 if (beacon != null) {
                     int rssi = Integer.parseInt(value);
@@ -378,7 +378,7 @@ public class AddPoint extends AppCompatActivity implements View.OnClickListener 
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Toast toast = Toast.makeText(AddPoint.this,
+                    Toast toast = Toast.makeText(BluetoothActivity.this,
                             "Scan error: " + errorCode, Toast.LENGTH_LONG);
                     toast.show();
                 }
@@ -394,7 +394,7 @@ public class AddPoint extends AppCompatActivity implements View.OnClickListener 
 
         @Override
         public Object getItem(int position) {
-            return beaconInfos.values().toArray(new AddPoint.BeaconInfo[0])[position];
+            return beaconInfos.values().toArray(new BeaconInfo[0])[position];
         }
 
         @Override
@@ -404,18 +404,18 @@ public class AddPoint extends AppCompatActivity implements View.OnClickListener 
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            AddPoint.MainListHolder mainListHolder;
+            MainListHolder mainListHolder;
             if (convertView == null) {
-                mainListHolder = new AddPoint.MainListHolder();
-                convertView = View.inflate(AddPoint.this, android.R.layout.two_line_list_item, null);
+                mainListHolder = new MainListHolder();
+                convertView = View.inflate(BluetoothActivity.this, android.R.layout.two_line_list_item, null);
                 mainListHolder.line1 = convertView.findViewById(android.R.id.text1);
                 mainListHolder.line2 = convertView.findViewById(android.R.id.text2);
                 convertView.setTag(mainListHolder);
 
             } else {
-                mainListHolder = (AddPoint.MainListHolder) convertView.getTag();
+                mainListHolder = (MainListHolder) convertView.getTag();
             }
-            AddPoint.BeaconInfo beaconInfo = (AddPoint.BeaconInfo) getItem(position);
+            BeaconInfo beaconInfo = (BeaconInfo) getItem(position);
             mainListHolder.line1.setText((beaconInfo.title != null) ?
                     beaconInfo.title : beaconInfo.address);
             mainListHolder.line2.setText(beaconInfo.rssi + " dbi, " + beaconInfo.lastSeen);

@@ -1,10 +1,9 @@
 <resources>
-    <string name="app_name">DiplomAdmin</string>
+    <string name="app_name">Bluehelper</string>
     <string name="textview">Логин</string>
     <string name="textview2">Пароль</string>
     <string name="button">Войти</string>
     <string name="button2">Операции с точками</string>
-    <string name="button3">Операции с векторами</string>
     <string name="button4">Операции с псевдонимами</string>
     <string name="button5">Добавить точку</string>
     <string name="button6">Удалить точку</string>
@@ -13,15 +12,22 @@
     <string name="textview6">Название</string>
     <string name="textview7">Id Здания</string>
     <string name="button8">Добавить</string>
-    <string name="textview4">Id точки</string>
     <string name="textview8">Id маркера</string>
     <string name="textview9">Название точки</string>
     <string name="textview10">Id здания</string>
     <string name="button9">Обновить точку</string>
-    <string name="textview3">Id Точки</string>
     <string name="textview11">Id Точки</string>
     <string name="button10">Удалить точку</string>
-    <string name="button11">Добавить Вектор</string>
-    <string name="button12">Удалить Вектор</string>
-    <string name="button13">Удалить Вектор</string>
+    <string name="currentBeaconLabel">nearest_beacon</string>
+    <string name="addButton">Батон</string>
+    <string name="discoveryCheckbox">Discovery enabled</string>
+    <string name="button14">Блютус</string>
+    <string name="button3">Операции с векторами</string>
+    <string name="button11">Добавить вектор</string>
+    <string name="button12">Удалить вектор</string>
+    <string name="textview3">Ближайший маяк</string>
+    <string name="checkbox">Начать поиск</string>
+    <string name="textview14">Id Точки</string>
+    <string name="textview15">Id маркера</string>
+    <string name="textview4">Название точки</string>
 </resources>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp"
+    tools:context=".activities.Bluetooth">
+
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="88dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        android:text="+"
+        android:onClick="addButtonClicked"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/currentBeaconLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="nearest beacon "
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <CheckBox
+            android:id="@+id/discoveryCheckBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="discovery enabled" />
+
+        <ListView
+            android:id="@+id/beaconListView"
+            android:layout_width="match_parent"
+            android:layout_height="18dp"
+            android:visibility="invisible" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/pointNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintEnd_toStartOf="@+id/addButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

@@ -93,33 +93,26 @@
                     android:layout_height="wrap_content"
                     android:text="@string/button8" />
 
-                <ScrollView
+                <TextView
+                    android:id="@+id/currentBeaconLabel2"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                <CheckBox
+                    android:id="@+id/discoveryCheckBox2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/checkbox" />
 
-                        <TextView
-                            android:id="@+id/textView12"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="TextView" />
+                <ListView
+                    android:id="@+id/beaconListView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="invisible" />
 
-                        <CheckBox
-                            android:id="@+id/checkBox"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="CheckBox" />
-
-                        <ListView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
-
-                    </LinearLayout>
-                </ScrollView>
             </LinearLayout>
         </ScrollView>
 

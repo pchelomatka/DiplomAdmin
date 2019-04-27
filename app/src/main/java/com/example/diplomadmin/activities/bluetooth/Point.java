@@ -1,4 +1,4 @@
-package com.example.diplomadmin.activities.IDK;
+package com.example.diplomadmin.activities.bluetooth;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,7 +6,7 @@ import java.util.Map;
 public class Point {
 
     public String name;
-    public Map<String,String> beacons = new HashMap<>();
+    public Map<String, String> beacons = new HashMap<>();
 
     Point(String name) {
         this.name = name;
@@ -19,5 +19,4 @@ public class Point {
     public int getBeaconsCount() {
         return this.beacons.size();
     }
-
 }

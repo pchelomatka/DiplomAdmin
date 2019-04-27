@@ -4,4 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.menu.MenuVector"/>
+    tools:context=".activities.menu.MenuVector">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <Button
+                    android:id="@+id/button11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button11" />
+
+                <Button
+                    android:id="@+id/button12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button12" />
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

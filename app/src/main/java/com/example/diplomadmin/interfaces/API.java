@@ -7,6 +7,7 @@ import com.example.diplomadmin.requestBody.RequestUpdatePoint;
 import com.example.diplomadmin.responseBody.ResponseAddPoint;
 import com.example.diplomadmin.responseBody.ResponseBodyAuth;
 import com.example.diplomadmin.responseBody.ResponseDeletePoint;
+import com.example.diplomadmin.responseBody.ResponseGetPoints;
 import com.example.diplomadmin.responseBody.ResponseUpdatePoint;
 
 import retrofit2.Call;
@@ -37,4 +38,8 @@ public interface API {
     @Headers({"User-Agent: " + userAgent})
     @POST("api/deletePoint")
     Call<ResponseDeletePoint> deletePoint(@Query("token") String token, @Body RequestDeletePoint requestDeletePoint);
+
+    @Headers({"User-Agent: " + userAgent})
+    @GET("api/points")
+    Call<ResponseGetPoints> points(@Query("token") String token, @Query("building_id") String building_id);
 }

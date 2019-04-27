@@ -8,7 +8,9 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <uses-feature android:name="android.hardware.bluetooth_le" android:required="true"/>
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -17,7 +19,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.aliases.UpdateAlias"></activity>
+        <activity android:name=".activities.menu.MenuVector"></activity>
+        <activity android:name=".activities.bluetooth.BluetoothActivity" />
+        <activity android:name=".activities.aliases.UpdateAlias" />
         <activity android:name=".activities.aliases.DeleteAlias" />
         <activity android:name=".activities.aliases.AddAlias" />
         <activity android:name=".activities.vectors.UpdateVector" />
@@ -27,7 +31,6 @@
         <activity android:name=".activities.points.UpdatePoint" />
         <activity android:name=".activities.points.AddPoint" />
         <activity android:name=".activities.menu.MenuAlias" />
-        <activity android:name=".activities.menu.MenuVector" />
         <activity android:name=".activities.menu.MenuPoint" />
         <activity android:name=".activities.menu.Menu" />
         <activity android:name=".activities.login.LoginActivity">

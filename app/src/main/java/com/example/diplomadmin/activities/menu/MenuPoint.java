@@ -35,16 +35,16 @@ public class MenuPoint extends AppCompatActivity implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button5:
-                Intent intentPoint = new Intent(this, AddPoint.class);
-                startActivity(intentPoint);
+                Intent intentAdd = new Intent(this, AddPoint.class);
+                startActivity(intentAdd);
                 break;
             case R.id.button6:
-                Intent intentVector = new Intent(this, DeletePoint.class);
-                startActivity(intentVector);
+                Intent intentDelete = new Intent(this, DeletePoint.class);
+                startActivity(intentDelete);
                 break;
             case R.id.button7:
-                Intent intentAlias = new Intent(this, UpdatePoint.class);
-                startActivity(intentAlias);
+                Intent intentUpdate = new Intent(this, UpdatePoint.class);
+                startActivity(intentUpdate);
                 break;
         }
     }

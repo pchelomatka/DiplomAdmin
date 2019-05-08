@@ -75,9 +75,9 @@ public class DeletePoint extends AppCompatActivity implements View.OnClickListen
             public void onResponse(Call<ResponseDeletePoint> call, Response<ResponseDeletePoint> response) {
                 if (response.isSuccessful()) {
                     deletePointStatus = true;
-                    Log.i("ADD POINT", response.body().getResponse());
+                    Toast.makeText(getApplicationContext(), "Точка удалена", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Something wrong", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Что-то пошло не так", Toast.LENGTH_LONG).show();
                 }
             }
 

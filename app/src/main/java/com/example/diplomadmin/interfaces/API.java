@@ -1,5 +1,6 @@
 package com.example.diplomadmin.interfaces;
 
+import com.example.diplomadmin.requestBody.RequestAddAlias;
 import com.example.diplomadmin.requestBody.RequestAddVector;
 import com.example.diplomadmin.requestBody.RequestBodyAddPoint;
 import com.example.diplomadmin.requestBody.RequestBodyAuth;
@@ -7,8 +8,10 @@ import com.example.diplomadmin.requestBody.RequestDeletePoint;
 import com.example.diplomadmin.requestBody.RequestDeleteVector;
 import com.example.diplomadmin.requestBody.RequestUpdatePoint;
 import com.example.diplomadmin.requestBody.RequestUpdateVector;
+import com.example.diplomadmin.responseBody.ResponseAddAlias;
 import com.example.diplomadmin.responseBody.ResponseAddPoint;
 import com.example.diplomadmin.responseBody.ResponseAddVector;
+import com.example.diplomadmin.responseBody.ResponseBodyAliases;
 import com.example.diplomadmin.responseBody.ResponseBodyAuth;
 import com.example.diplomadmin.responseBody.ResponseDeletePoint;
 import com.example.diplomadmin.responseBody.ResponseDeleteVector;
@@ -65,4 +68,12 @@ public interface API {
     @Headers({"User-Agent: " + userAgent})
     @POST("api/deleteVector")
     Call<ResponseDeleteVector> deleteVector(@Query("token") String token, @Body RequestDeleteVector requestDeleteVector);
+
+    @Headers({"User-Agent: " + userAgent})
+    @POST("api/addAlias")
+    Call<ResponseAddAlias> addAlias(@Query("token") String token, @Body RequestAddAlias requestAddAlias);
+
+    @Headers({"User-Agent: " + userAgent})
+    @GET("api/aliases")
+    Call<ResponseBodyAliases> aliases(@Query("token") String token, @Query("point_id") String point_id);
 }

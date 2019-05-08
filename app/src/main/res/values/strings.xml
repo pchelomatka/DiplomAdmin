@@ -44,4 +44,12 @@
     <string name="button16">Изменить вектор</string>
     <string name="textview24">Id Вектора</string>
     <string name="button17">Удалить вектор</string>
+    <string name="button18">Добавить псевдоним</string>
+    <string name="button19">Удалить псевдоним</string>
+    <string name="button20">Изменить псевдоним</string>
+    <string name="IdPointAlias">Id точки</string>
+    <string name="TitleAlias">Название</string>
+    <string name="button21">Добавить псевдоним</string>
+    <string name="button22">Псевдонимы точки</string>
+    <string name="textview27">Id точки</string>
 </resources>

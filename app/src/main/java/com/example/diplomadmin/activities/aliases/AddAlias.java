@@ -33,7 +33,7 @@ public class AddAlias extends AppCompatActivity implements View.OnClickListener 
     TextView textViewGetAliases;
     private Button addAlias;
     private Button searchAlias;
-    public static String pointsForVectors;
+    public static String pointsForAliases;
     String buildingIdHard = "4";
     public static String pointsAlias;
     private static Boolean addAliasStatus = false;
@@ -156,14 +156,14 @@ public class AddAlias extends AppCompatActivity implements View.OnClickListener 
             @Override
             public void onResponse(Call<ResponseBodyAliases> call, Response<ResponseBodyAliases> response) {
                 if (response.isSuccessful()) {
-                    pointsForVectors = "";
+                    pointsForAliases = "";
                     for (int i = 0; i < response.body().getResponse().size(); i++) {
-                        pointsForVectors += response.body().getResponse().get(i).getId() + " ";
-                        pointsForVectors += response.body().getResponse().get(i).getTitle() + " ";
-                        pointsForVectors += response.body().getResponse().get(i).getPointId() + " ";
-                        pointsForVectors += "\n";
+                        pointsForAliases += response.body().getResponse().get(i).getId() + " ";
+                        pointsForAliases += response.body().getResponse().get(i).getTitle() + " ";
+                        pointsForAliases += response.body().getResponse().get(i).getPointId() + " ";
+                        pointsForAliases += "\n";
                     }
-                    textViewGetAliases.setText(pointsForVectors.replace("null", ""));
+                    textViewGetAliases.setText(pointsForAliases.replace("null", ""));
                 }
             }
 

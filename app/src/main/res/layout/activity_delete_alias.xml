@@ -6,4 +6,88 @@
     android:layout_height="match_parent"
     tools:context=".activities.aliases.DeleteAlias">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView25"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/textview25" />
+
+                    <EditText
+                        android:id="@+id/editText26"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="textPersonName" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/button23"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button23" />
+
+                <TextView
+                    android:id="@+id/textView30"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                <Button
+                    android:id="@+id/button24"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button24" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView31"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/textview31" />
+
+                    <EditText
+                        android:id="@+id/editText27"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="textPersonName" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView32"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

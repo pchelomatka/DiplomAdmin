@@ -4,8 +4,10 @@ import com.example.diplomadmin.requestBody.RequestAddAlias;
 import com.example.diplomadmin.requestBody.RequestAddVector;
 import com.example.diplomadmin.requestBody.RequestBodyAddPoint;
 import com.example.diplomadmin.requestBody.RequestBodyAuth;
+import com.example.diplomadmin.requestBody.RequestDeleteAlias;
 import com.example.diplomadmin.requestBody.RequestDeletePoint;
 import com.example.diplomadmin.requestBody.RequestDeleteVector;
+import com.example.diplomadmin.requestBody.RequestUpdateAlias;
 import com.example.diplomadmin.requestBody.RequestUpdatePoint;
 import com.example.diplomadmin.requestBody.RequestUpdateVector;
 import com.example.diplomadmin.responseBody.ResponseAddAlias;
@@ -13,10 +15,12 @@ import com.example.diplomadmin.responseBody.ResponseAddPoint;
 import com.example.diplomadmin.responseBody.ResponseAddVector;
 import com.example.diplomadmin.responseBody.ResponseBodyAliases;
 import com.example.diplomadmin.responseBody.ResponseBodyAuth;
+import com.example.diplomadmin.responseBody.ResponseDeleteAlias;
 import com.example.diplomadmin.responseBody.ResponseDeletePoint;
 import com.example.diplomadmin.responseBody.ResponseDeleteVector;
 import com.example.diplomadmin.responseBody.ResponseGetPoints;
 import com.example.diplomadmin.responseBody.ResponseGetVectors;
+import com.example.diplomadmin.responseBody.ResponseUpdateAlias;
 import com.example.diplomadmin.responseBody.ResponseUpdatePoint;
 import com.example.diplomadmin.responseBody.ResponseUpdateVector;
 
@@ -76,4 +80,12 @@ public interface API {
     @Headers({"User-Agent: " + userAgent})
     @GET("api/aliases")
     Call<ResponseBodyAliases> aliases(@Query("token") String token, @Query("point_id") String point_id);
+
+    @Headers({"User-Agent: " + userAgent})
+    @POST("api/deleteAlias")
+    Call<ResponseDeleteAlias> deleteAlias(@Query("token") String token, @Body RequestDeleteAlias requestDeleteAlias);
+
+    @Headers({"User-Agent: " + userAgent})
+    @POST("api/updateAlias")
+    Call<ResponseUpdateAlias> updateAlias(@Query("token") String token, @Body RequestUpdateAlias requestUpdateAlias);
 }

@@ -52,4 +52,13 @@
     <string name="button21">Добавить псевдоним</string>
     <string name="button22">Псевдонимы точки</string>
     <string name="textview27">Id точки</string>
+    <string name="textview25">Id псевдонима</string>
+    <string name="button23">Удалить псевдоним</string>
+    <string name="button24">Псевдонимы точки</string>
+    <string name="textview31">Id точки</string>
+    <string name="textview33">Id псевдонима</string>
+    <string name="textview35">Название псевдонима</string>
+    <string name="button25">Изменить псевдоним</string>
+    <string name="button26">Псевдонимы точки</string>
+    <string name="textview38">Id точки</string>
 </resources>

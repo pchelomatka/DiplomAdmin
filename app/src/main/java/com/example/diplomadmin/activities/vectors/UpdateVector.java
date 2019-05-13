@@ -23,7 +23,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class UpdateVector extends AppCompatActivity implements View.OnClickListener{
+public class UpdateVector extends AppCompatActivity implements View.OnClickListener {
 
     private EditText editTextId;
     private EditText editTextBuildingId;
@@ -62,7 +62,16 @@ public class UpdateVector extends AppCompatActivity implements View.OnClickListe
         String endPoint = editTextEndPoint.getText().toString().trim();
         String distance = editTextDistance.getText().toString().trim();
         String direction = editTextDirection.getText().toString().trim();
-        updateVector(id, building_id, startPoint, endPoint, distance, direction);
+
+        if (!building_id.isEmpty() & !startPoint.isEmpty() & !endPoint.isEmpty() & !distance.isEmpty() & !direction.isEmpty()) {
+            if (Integer.parseInt(building_id) > 0 & Integer.parseInt(startPoint) > 0 & Integer.parseInt(endPoint) > 0 & Integer.parseInt(distance) > 0 & Integer.parseInt(direction) > 0) {
+                updateVector(id, building_id, startPoint, endPoint, distance, direction);
+            } else {
+                Toast.makeText(getApplicationContext(), "Данные не могут быть отрицательными", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "Данные не введены", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void updateVector(String id, String building_id, String startPoint, String endPoint, String distance, String direction) {

@@ -13,9 +13,9 @@ import com.example.diplomadmin.R;
 import com.example.diplomadmin.activities.login.LoginActivity;
 import com.example.diplomadmin.activities.menu.MenuVector;
 import com.example.diplomadmin.interfaces.API;
-import com.example.diplomadmin.requestBody.RequestAddVector;
-import com.example.diplomadmin.responseBody.ResponseAddVector;
-import com.example.diplomadmin.responseBody.ResponseGetPoints;
+import com.example.diplomadmin.request_body.RequestAddVector;
+import com.example.diplomadmin.response_body.ResponseAddVector;
+import com.example.diplomadmin.response_body.ResponseGetPoints;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,7 +31,7 @@ public class AddVector extends AppCompatActivity implements View.OnClickListener
     private EditText editTextDistance;
     private EditText editTextDirection;
     private Button addButton;
-    public  TextView textViewForVector;
+    public TextView textViewForVector;
     public boolean addVectorStatus = false;
     public static String pointsForVectors;
     String buildingIdHard = "4";
@@ -58,11 +58,21 @@ public class AddVector extends AppCompatActivity implements View.OnClickListener
         String endPoint = editTextEndPoint.getText().toString().trim();
         String distance = editTextDistance.getText().toString().trim();
         String direction = editTextDirection.getText().toString().trim();
-        addVector(building_id, startPoint, endPoint, distance, direction);
+
+        if (!building_id.isEmpty() & !startPoint.isEmpty() & !endPoint.isEmpty() & !distance.isEmpty() & !direction.isEmpty()) {
+            if (Integer.parseInt(building_id) > 0 & Integer.parseInt(startPoint) > 0 & Integer.parseInt(endPoint) > 0 & Integer.parseInt(distance) > 0 & Integer.parseInt(direction) > 0) {
+                addVector(building_id, startPoint, endPoint, distance, direction);
+            } else {
+                Toast.makeText(getApplicationContext(), "Данные не могут быть отрицательными", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "Данные не введены", Toast.LENGTH_LONG).show();
+        }
 
     }
 
-    private void addVector(String building_id, String startPoint, String endPoint, String distance, String direction) {
+    private void addVector(String building_id, String startPoint, String endPoint, String
+            distance, String direction) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(LoginActivity.baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())

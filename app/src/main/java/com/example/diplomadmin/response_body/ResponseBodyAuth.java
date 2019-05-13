@@ -1,18 +1,17 @@
-package com.example.diplomadmin.responseBody;
+package com.example.diplomadmin.response_body;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
+public class ResponseBodyAuth {
 
-public class ResponseGetVectors {
 
     @SerializedName("status")
     @Expose
     private Boolean status;
     @SerializedName("response")
     @Expose
-    private List<ResponseVectors> response = null;
+    private ResponseAuth response;
 
     public Boolean getStatus() {
         return status;
@@ -22,11 +21,11 @@ public class ResponseGetVectors {
         this.status = status;
     }
 
-    public List<ResponseVectors> getResponse() {
+    public ResponseAuth getResponse() {
         return response;
     }
 
-    public void setResponse(List<ResponseVectors> response) {
+    public void setResponse(ResponseAuth response) {
         this.response = response;
     }
 }

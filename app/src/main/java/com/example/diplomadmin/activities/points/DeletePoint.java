@@ -3,7 +3,6 @@ package com.example.diplomadmin.activities.points;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -14,9 +13,9 @@ import android.widget.Toast;
 import com.example.diplomadmin.R;
 import com.example.diplomadmin.activities.login.LoginActivity;
 import com.example.diplomadmin.interfaces.API;
-import com.example.diplomadmin.requestBody.RequestDeletePoint;
-import com.example.diplomadmin.responseBody.ResponseDeletePoint;
-import com.example.diplomadmin.responseBody.ResponseGetPoints;
+import com.example.diplomadmin.request_body.RequestDeletePoint;
+import com.example.diplomadmin.response_body.ResponseDeletePoint;
+import com.example.diplomadmin.response_body.ResponseGetPoints;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,7 +29,7 @@ public class DeletePoint extends AppCompatActivity implements View.OnClickListen
     EditText editTextDeletePoint;
     TextView textViewGetPoints;
     private static Boolean deletePointStatus = false;
-//    String token;
+    //    String token;
     String building_id = "4"; //да-да хардкод
     public static String points;
 
@@ -53,7 +52,13 @@ public class DeletePoint extends AppCompatActivity implements View.OnClickListen
         String id = editTextDeletePoint.getText().toString().trim();
 
         if (!id.isEmpty()) {
-            deletePoint(id);
+            if (Integer.parseInt(id) > 0) {
+                deletePoint(id);
+            } else {
+                Toast.makeText(getApplicationContext(), "Id не может быть отрицательным", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "Данные не введены", Toast.LENGTH_LONG).show();
         }
     }
 

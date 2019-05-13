@@ -28,16 +28,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.diplomadmin.R;
-import com.example.diplomadmin.activities.bluetooth.BluetoothActivity;
 import com.example.diplomadmin.activities.bluetooth.Point;
 import com.example.diplomadmin.activities.login.LoginActivity;
 import com.example.diplomadmin.activities.menu.MenuPoint;
 import com.example.diplomadmin.interfaces.API;
-import com.example.diplomadmin.requestBody.RequestBodyAddPoint;
-import com.example.diplomadmin.responseBody.ResponseAddPoint;
+import com.example.diplomadmin.request_body.RequestBodyAddPoint;
+import com.example.diplomadmin.response_body.ResponseAddPoint;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -164,7 +162,13 @@ public class AddPoint extends AppCompatActivity implements View.OnClickListener 
         String buildingId = editTextBuildingId.getText().toString().trim();
 
         if (!deviceId.isEmpty() & !title.isEmpty() & !buildingId.isEmpty()) {
-            addPoint(deviceId, title, buildingId);
+            if (Integer.parseInt(deviceId) > 0 & Integer.parseInt(buildingId) > 0) {
+                addPoint(deviceId, title, buildingId);
+            } else {
+                Toast.makeText(getApplicationContext(), "Id не могут быть отризацательными", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "Данные не введены", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -186,7 +190,6 @@ public class AddPoint extends AppCompatActivity implements View.OnClickListener 
             public void onResponse(Call<ResponseAddPoint> call, Response<ResponseAddPoint> response) {
                 if (response.isSuccessful()) {
                     addPointStatus = true;
-                    Log.i("ADD POINT", response.body().getResponse());
                     Toast.makeText(getApplicationContext(), "Точка добавлена", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(getApplicationContext(), "Что-то пошло не так", Toast.LENGTH_LONG).show();

@@ -13,8 +13,8 @@ import android.widget.Toast;
 import com.example.diplomadmin.R;
 import com.example.diplomadmin.activities.menu.Menu;
 import com.example.diplomadmin.interfaces.API;
-import com.example.diplomadmin.requestBody.RequestBodyAuth;
-import com.example.diplomadmin.responseBody.ResponseBodyAuth;
+import com.example.diplomadmin.request_body.RequestBodyAuth;
+import com.example.diplomadmin.response_body.ResponseBodyAuth;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -52,6 +52,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if (!login.isEmpty() & !password.isEmpty()) {
             login(login, password);
+        } else {
+            Toast.makeText(getApplicationContext(), "Данные не введены", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -109,11 +111,5 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 buttonLogin.setText("Войти");
             }
         });
-//        if (authStatus == true) {
-//            Intent intent = new Intent(this, Menu.class);
-//            startActivity(intent);
-//            finish();
-//        }
-
     }
 }

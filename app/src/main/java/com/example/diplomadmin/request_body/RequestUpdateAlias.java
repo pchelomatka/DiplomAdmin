@@ -1,28 +1,28 @@
-package com.example.diplomadmin.requestBody;
+package com.example.diplomadmin.request_body;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class RequestAddAlias {
+public class RequestUpdateAlias {
 
-    @SerializedName("point_id")
+    @SerializedName("id")
     @Expose
-    private String pointId;
+    private String id;
     @SerializedName("title")
     @Expose
     private String title;
 
-    public RequestAddAlias(String pointId, String title) {
-        this.pointId = pointId;
+    public RequestUpdateAlias(String id, String title) {
+        this.id = id;
         this.title = title;
     }
 
-    public String getPointId() {
-        return pointId;
+    public String getId() {
+        return id;
     }
 
-    public void setPointId(String pointId) {
-        this.pointId = pointId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTitle() {

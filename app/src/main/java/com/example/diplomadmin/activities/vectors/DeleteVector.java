@@ -13,10 +13,9 @@ import com.example.diplomadmin.R;
 import com.example.diplomadmin.activities.login.LoginActivity;
 import com.example.diplomadmin.activities.menu.MenuVector;
 import com.example.diplomadmin.interfaces.API;
-import com.example.diplomadmin.requestBody.RequestDeleteVector;
-import com.example.diplomadmin.responseBody.ResponseDeletePoint;
-import com.example.diplomadmin.responseBody.ResponseDeleteVector;
-import com.example.diplomadmin.responseBody.ResponseGetVectors;
+import com.example.diplomadmin.request_body.RequestDeleteVector;
+import com.example.diplomadmin.response_body.ResponseDeleteVector;
+import com.example.diplomadmin.response_body.ResponseGetVectors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,7 +23,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class DeleteVector extends AppCompatActivity implements View.OnClickListener{
+public class DeleteVector extends AppCompatActivity implements View.OnClickListener {
 
     private EditText editTextId;
     private Button addButton;
@@ -47,7 +46,16 @@ public class DeleteVector extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         String id = editTextId.getText().toString().trim();
-        deleteVector(id);
+
+        if (!id.isEmpty()) {
+            if(Integer.parseInt(id) > 0) {
+                deleteVector(id);
+            } else {
+                Toast.makeText(getApplicationContext(), "Id не может быть отрицательным", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "Данные не введены", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void deleteVector(String id) {

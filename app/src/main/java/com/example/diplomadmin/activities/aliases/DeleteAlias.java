@@ -13,12 +13,10 @@ import com.example.diplomadmin.R;
 import com.example.diplomadmin.activities.login.LoginActivity;
 import com.example.diplomadmin.activities.menu.MenuAlias;
 import com.example.diplomadmin.interfaces.API;
-import com.example.diplomadmin.requestBody.RequestAddAlias;
-import com.example.diplomadmin.requestBody.RequestDeleteAlias;
-import com.example.diplomadmin.responseBody.ResponseAddAlias;
-import com.example.diplomadmin.responseBody.ResponseBodyAliases;
-import com.example.diplomadmin.responseBody.ResponseDeleteAlias;
-import com.example.diplomadmin.responseBody.ResponseGetPoints;
+import com.example.diplomadmin.request_body.RequestDeleteAlias;
+import com.example.diplomadmin.response_body.ResponseBodyAliases;
+import com.example.diplomadmin.response_body.ResponseDeleteAlias;
+import com.example.diplomadmin.response_body.ResponseGetPoints;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,7 +24,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class DeleteAlias extends AppCompatActivity implements View.OnClickListener{
+public class DeleteAlias extends AppCompatActivity implements View.OnClickListener {
 
     private EditText editTextAliasId;
     private EditText editTextPointIdSearch;
@@ -63,11 +61,31 @@ public class DeleteAlias extends AppCompatActivity implements View.OnClickListen
 
         switch (v.getId()) {
             case R.id.button23:
-                deleteAlias(aliasId);
-                break;
+                if (!aliasId.equals("")) {
+                    if (Integer.parseInt(aliasId) > 0) {
+                        deleteAlias(aliasId);
+                        break;
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Id псевдонима не может быть отрицательным", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), "Данные не введены", Toast.LENGTH_LONG).show();
+                    break;
+                }
             case R.id.button24:
-                aliases(pointIdAlias);
-                break;
+                if (!pointIdAlias.equals("")) {
+                    if (Integer.parseInt(pointIdAlias) > 0) {
+                        aliases(pointIdAlias);
+                        break;
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Id точки не может быть отрицательным", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), "Данные не введены", Toast.LENGTH_LONG).show();
+                    break;
+                }
         }
     }
 
@@ -97,7 +115,7 @@ public class DeleteAlias extends AppCompatActivity implements View.OnClickListen
 
             @Override
             public void onFailure(Call<ResponseDeleteAlias> call, Throwable t) {
-
+                Toast.makeText(getApplicationContext(), "Сервер не отвечает", Toast.LENGTH_LONG).show();
             }
         });
         if (deleteAliasStatus == true) {

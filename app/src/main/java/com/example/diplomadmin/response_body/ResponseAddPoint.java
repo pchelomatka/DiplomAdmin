@@ -1,18 +1,16 @@
-package com.example.diplomadmin.responseBody;
+package com.example.diplomadmin.response_body;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
-public class ResponseGetPoints {
+public class ResponseAddPoint {
 
     @SerializedName("status")
     @Expose
     private Boolean status;
     @SerializedName("response")
     @Expose
-    private List<ResponsePoints> response = null;
+    private String response;
 
     public Boolean getStatus() {
         return status;
@@ -22,12 +20,13 @@ public class ResponseGetPoints {
         this.status = status;
     }
 
-    public List<ResponsePoints> getResponse() {
+    public String getResponse() {
         return response;
     }
 
-    public void setResponse(List<ResponsePoints> response) {
+    public void setResponse(String response) {
         this.response = response;
     }
 
 }
+

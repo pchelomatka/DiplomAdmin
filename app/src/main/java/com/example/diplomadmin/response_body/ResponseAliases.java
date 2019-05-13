@@ -1,4 +1,4 @@
-package com.example.diplomadmin.responseBody;
+package com.example.diplomadmin.response_body;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

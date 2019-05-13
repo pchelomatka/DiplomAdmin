@@ -13,10 +13,10 @@ import com.example.diplomadmin.R;
 import com.example.diplomadmin.activities.login.LoginActivity;
 import com.example.diplomadmin.activities.menu.MenuAlias;
 import com.example.diplomadmin.interfaces.API;
-import com.example.diplomadmin.requestBody.RequestAddAlias;
-import com.example.diplomadmin.responseBody.ResponseAddAlias;
-import com.example.diplomadmin.responseBody.ResponseBodyAliases;
-import com.example.diplomadmin.responseBody.ResponseGetPoints;
+import com.example.diplomadmin.request_body.RequestAddAlias;
+import com.example.diplomadmin.response_body.ResponseAddAlias;
+import com.example.diplomadmin.response_body.ResponseBodyAliases;
+import com.example.diplomadmin.response_body.ResponseGetPoints;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -61,13 +61,34 @@ public class AddAlias extends AppCompatActivity implements View.OnClickListener 
         String title = editTextTitleAlias.getText().toString().trim();
         String pointIdAlias = editTextPointIdSearch.getText().toString().trim();
 
+
         switch (v.getId()) {
             case R.id.button21:
-                addAlias(pointId, title);
-                break;
+                if (!pointId.equals("") && !title.equals("")) {
+                    if (Integer.parseInt(pointId) > 0) {
+                        addAlias(pointId, title);
+                        break;
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Id точки не может быть отрицательным", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), "Данные не введены", Toast.LENGTH_LONG).show();
+                    break;
+                }
             case R.id.button22:
-                aliases(pointIdAlias);
-                break;
+                if (!pointIdAlias.equals("")) {
+                    if (Integer.parseInt(pointIdAlias) > 0) {
+                        aliases(pointIdAlias);
+                        break;
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Id точки не может быть отрицательным", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), "Данные не введены", Toast.LENGTH_LONG).show();
+                    break;
+                }
         }
     }
 

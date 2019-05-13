@@ -1,15 +1,14 @@
-package com.example.diplomadmin.requestBody;
+package com.example.diplomadmin.request_body;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class RequestDeletePoint {
-
+public class RequestDeleteAlias {
     @SerializedName("id")
     @Expose
     private String id;
 
-    public RequestDeletePoint(String id) {
+    public RequestDeleteAlias(String id) {
         this.id = id;
     }
 

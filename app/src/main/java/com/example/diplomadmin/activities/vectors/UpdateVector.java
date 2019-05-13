@@ -13,11 +13,9 @@ import com.example.diplomadmin.R;
 import com.example.diplomadmin.activities.login.LoginActivity;
 import com.example.diplomadmin.activities.menu.MenuVector;
 import com.example.diplomadmin.interfaces.API;
-import com.example.diplomadmin.requestBody.RequestUpdateVector;
-import com.example.diplomadmin.responseBody.ResponseAddVector;
-import com.example.diplomadmin.responseBody.ResponseGetPoints;
-import com.example.diplomadmin.responseBody.ResponseGetVectors;
-import com.example.diplomadmin.responseBody.ResponseUpdateVector;
+import com.example.diplomadmin.request_body.RequestUpdateVector;
+import com.example.diplomadmin.response_body.ResponseGetVectors;
+import com.example.diplomadmin.response_body.ResponseUpdateVector;
 
 import retrofit2.Call;
 import retrofit2.Callback;

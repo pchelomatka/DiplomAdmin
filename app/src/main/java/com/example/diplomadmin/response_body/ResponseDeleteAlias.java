@@ -1,10 +1,9 @@
-package com.example.diplomadmin.responseBody;
+package com.example.diplomadmin.response_body;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ResponseUpdateVector {
-
+public class ResponseDeleteAlias {
     @SerializedName("status")
     @Expose
     private Boolean status;

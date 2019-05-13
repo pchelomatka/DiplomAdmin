@@ -3,7 +3,6 @@ package com.example.diplomadmin.activities.points;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -14,9 +13,9 @@ import android.widget.Toast;
 import com.example.diplomadmin.R;
 import com.example.diplomadmin.activities.login.LoginActivity;
 import com.example.diplomadmin.interfaces.API;
-import com.example.diplomadmin.requestBody.RequestUpdatePoint;
-import com.example.diplomadmin.responseBody.ResponseGetPoints;
-import com.example.diplomadmin.responseBody.ResponseUpdatePoint;
+import com.example.diplomadmin.request_body.RequestUpdatePoint;
+import com.example.diplomadmin.response_body.ResponseGetPoints;
+import com.example.diplomadmin.response_body.ResponseUpdatePoint;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -60,7 +59,13 @@ public class UpdatePoint extends AppCompatActivity implements View.OnClickListen
         String buildingId = editTextBuildingId.getText().toString().trim();
 
         if (!id.isEmpty() & !deviceId.isEmpty() & !title.isEmpty() & !buildingId.isEmpty()) {
-            updatePoint(id, deviceId, title, buildingId);
+            if (Integer.parseInt(id) > 0 & Integer.parseInt(deviceId) > 0 & Integer.parseInt(buildingId) > 0) {
+                updatePoint(id, deviceId, title, buildingId);
+            } else {
+                Toast.makeText(getApplicationContext(), "Id не могут быть отрицательными", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "Данные не введены", Toast.LENGTH_LONG).show();
         }
     }
 

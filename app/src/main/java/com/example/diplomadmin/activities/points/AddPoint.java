@@ -76,6 +76,7 @@ public class AddPoint extends AppCompatActivity implements View.OnClickListener 
     EditText editTextTitle;
     EditText editTextBuildingId;
     private static Boolean addPointStatus = false;
+    public static String buildingIdAddPoint = "4";
 //    String token;
 
     @Override
@@ -152,7 +153,6 @@ public class AddPoint extends AppCompatActivity implements View.OnClickListener 
         buttonAddPoint.setOnClickListener(this);
         editTextDeviceId = findViewById(R.id.editText4);
         editTextTitle = findViewById(R.id.editText5);
-        editTextBuildingId = findViewById(R.id.editText6);
     }
 
     @Override
@@ -161,9 +161,9 @@ public class AddPoint extends AppCompatActivity implements View.OnClickListener 
         String title = editTextTitle.getText().toString().trim();
         String buildingId = editTextBuildingId.getText().toString().trim();
 
-        if (!deviceId.isEmpty() & !title.isEmpty() & !buildingId.isEmpty()) {
-            if (Integer.parseInt(deviceId) > 0 & Integer.parseInt(buildingId) > 0) {
-                addPoint(deviceId, title, buildingId);
+        if (!deviceId.isEmpty() & !title.isEmpty()) {
+            if (Integer.parseInt(buildingIdAddPoint) > 0) {
+                addPoint(deviceId, title, buildingIdAddPoint);
             } else {
                 Toast.makeText(getApplicationContext(), "Id не могут быть отризацательными", Toast.LENGTH_LONG).show();
             }

@@ -43,7 +43,6 @@ public class UpdateVector extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_update_vector);
 
         editTextId = findViewById(R.id.editText16);
-        editTextBuildingId = findViewById(R.id.editText17);
         editTextStartPoint = findViewById(R.id.editText18);
         editTextEndPoint = findViewById(R.id.editText20);
         editTextDistance = findViewById(R.id.editText21);
@@ -57,15 +56,14 @@ public class UpdateVector extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         String id = editTextId.getText().toString().trim();
-        String building_id = editTextBuildingId.getText().toString().trim();
         String startPoint = editTextStartPoint.getText().toString().trim();
         String endPoint = editTextEndPoint.getText().toString().trim();
         String distance = editTextDistance.getText().toString().trim();
         String direction = editTextDirection.getText().toString().trim();
 
-        if (!building_id.isEmpty() & !startPoint.isEmpty() & !endPoint.isEmpty() & !distance.isEmpty() & !direction.isEmpty()) {
-            if (Integer.parseInt(building_id) > 0 & Integer.parseInt(startPoint) > 0 & Integer.parseInt(endPoint) > 0 & Integer.parseInt(distance) > 0 & Integer.parseInt(direction) > 0) {
-                updateVector(id, building_id, startPoint, endPoint, distance, direction);
+        if (!startPoint.isEmpty() & !endPoint.isEmpty() & !distance.isEmpty() & !direction.isEmpty()) {
+            if (Integer.parseInt(startPoint) > 0 & Integer.parseInt(endPoint) > 0 & Integer.parseInt(distance) > 0 & Integer.parseInt(direction) > 0) {
+                updateVector(id, buildingIdHard, startPoint, endPoint, distance, direction);
             } else {
                 Toast.makeText(getApplicationContext(), "Данные не могут быть отрицательными", Toast.LENGTH_LONG).show();
             }

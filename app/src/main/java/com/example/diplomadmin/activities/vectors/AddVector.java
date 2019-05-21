@@ -40,7 +40,6 @@ public class AddVector extends AppCompatActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_vector);
-        editTextBuildingId = findViewById(R.id.editText10);
         editTextStartPoint = findViewById(R.id.editText12);
         editTextEndPoint = findViewById(R.id.editText13);
         editTextDistance = findViewById(R.id.editText14);
@@ -53,15 +52,14 @@ public class AddVector extends AppCompatActivity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        String building_id = editTextBuildingId.getText().toString().trim();
         String startPoint = editTextStartPoint.getText().toString().trim();
         String endPoint = editTextEndPoint.getText().toString().trim();
         String distance = editTextDistance.getText().toString().trim();
         String direction = editTextDirection.getText().toString().trim();
 
-        if (!building_id.isEmpty() & !startPoint.isEmpty() & !endPoint.isEmpty() & !distance.isEmpty() & !direction.isEmpty()) {
-            if (Integer.parseInt(building_id) > 0 & Integer.parseInt(startPoint) > 0 & Integer.parseInt(endPoint) > 0 & Integer.parseInt(distance) > 0 & Integer.parseInt(direction) > 0) {
-                addVector(building_id, startPoint, endPoint, distance, direction);
+        if (!startPoint.isEmpty() & !endPoint.isEmpty() & !distance.isEmpty() & !direction.isEmpty()) {
+            if (Integer.parseInt(startPoint) > 0 & Integer.parseInt(endPoint) > 0 & Integer.parseInt(distance) > 0 & Integer.parseInt(direction) > 0) {
+                addVector(buildingIdHard, startPoint, endPoint, distance, direction);
             } else {
                 Toast.makeText(getApplicationContext(), "Данные не могут быть отрицательными", Toast.LENGTH_LONG).show();
             }

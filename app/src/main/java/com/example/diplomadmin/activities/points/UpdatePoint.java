@@ -46,7 +46,6 @@ public class UpdatePoint extends AppCompatActivity implements View.OnClickListen
         editTextId = findViewById(R.id.editText3);
         editTextDeviceId = findViewById(R.id.editText7);
         editTextTitle = findViewById(R.id.editText8);
-        editTextBuildingId = findViewById(R.id.editText9);
         textViewGetPoints = findViewById(R.id.textView4);
         points(building_id);
     }
@@ -56,11 +55,10 @@ public class UpdatePoint extends AppCompatActivity implements View.OnClickListen
         String id = editTextId.getText().toString().trim();
         String deviceId = editTextDeviceId.getText().toString().trim();
         String title = editTextTitle.getText().toString().trim();
-        String buildingId = editTextBuildingId.getText().toString().trim();
 
-        if (!id.isEmpty() & !deviceId.isEmpty() & !title.isEmpty() & !buildingId.isEmpty()) {
-            if (Integer.parseInt(id) > 0 & Integer.parseInt(deviceId) > 0 & Integer.parseInt(buildingId) > 0) {
-                updatePoint(id, deviceId, title, buildingId);
+        if (!id.isEmpty() & !deviceId.isEmpty() & !title.isEmpty()) {
+            if (Integer.parseInt(id) > 0) {
+                updatePoint(id, deviceId, title, building_id);
             } else {
                 Toast.makeText(getApplicationContext(), "Id не могут быть отрицательными", Toast.LENGTH_LONG).show();
             }
